@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #222;
+    }
+    h1 {
+      color: #fff;
+      font-size: 5rem;
+      font-weight: bold;
+      font-family: "Space Mono", monospace;
+    }
+    h2{
+        color: #fff;
+      font-size: 3rem;
+      font-family: "Space Mono", monospace;
+    }
+    h3{
+        color: #fff;
+      font-size: 2rem;
+      
+      font-family: "Space Mono", monospace;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="data">
+        <h1 class="hacker" data-value="HASHBITSTUDIO">HASHBITSTUDIO</h1>
+        <h2 class="hacker" data-value="SAFWAN ABBAS">SAFWAN ABBAS</h1>
+        <h3 class="hacker" data-value="AUTHOR">AUTHOR</h1>
+      </div>
+    </div>
+    <script>
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const headings = document.querySelectorAll(".hacker");
+      console.log(headings)
+      for (heading in headings){
+        headings[heading].onmouseover = (event) => {
+        let repeatetion = 0;
+        const interval = setInterval(() => {
+          event.target.innerText = event.target.innerText
+            .split("")
+            .map((letter, index) => {
+              if (index < repeatetion) {
+                return event.target.dataset.value[index];
+              }
+              return letters[Math.floor(Math.random() * 26)];
+            })
+            .join("");
+
+          if (repeatetion >= event.target.dataset.value.length)
+            clearInterval(interval);
+          repeatetion += 1 / 3;
+        }, 30);
+
+        //Because we have 26 alphabets
+      };
+    }
+    </script>
+  </body>
+</html>
